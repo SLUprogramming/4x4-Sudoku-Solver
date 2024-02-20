@@ -1,0 +1,175 @@
+#Example output/usage of sudoku_solver.py:
+
+Python 3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+======================= RESTART: C:\code\sudoku_solver.py ======================
+This program solves 2x2 sudoku puzzles
+A 2x2 sudoku puzzle has the following form:
+    
+a1 a2 | a3 a4
+b1 b2 | b3 b4
+-------------      
+c1 c2 | c3 c4
+d1 d2 | d3 d4
+
+Where an, bn, cn, dn represent numbers
+ranging in value from 1 to 4. Rows span 
+4 consecutive numbers horizontally, 
+columns span 4 consecutive numbers 
+vertically, and the 4 squares contain 4
+each. They are visualized above.
+Each row, column, and square may only
+contain one instance of each number
+meaning no duplicates of a number are 
+allowed to be present in a single row,
+column, or square.
+['a1', 'a2', 'a3', 'a4', 'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4']
+Please input values.
+This program solves 2x2 sudoku puzzles
+A 2x2 sudoku puzzle has the following form:
+    
+a1 a2 | a3 a4
+b1 b2 | b3 b4
+-------------      
+c1 c2 | c3 c4
+d1 d2 | d3 d4
+
+Where an, bn, cn, dn represent numbers
+ranging in value from 1 to 4. Rows span 
+4 consecutive numbers horizontally, 
+columns span 4 consecutive numbers 
+vertically, and the 4 squares contain 4
+each. They are visualized above.
+Each row, column, and square may only
+contain one instance of each number
+meaning no duplicates of a number are 
+allowed to be present in a single row,
+column, or square.
+This is the board currently: 
+
+ | | | 
+-|-|-|-      
+ | | | 
+-|-|-|-      
+ | | | 
+-|-|-|-      
+ | | | 
+
+
+Currently, these square have no values: 
+['a1', 'a2', 'a3', 'a4', 'b1', 'b2', 'b3', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4']
+        
+Which block would you like to fill: a1
+What value (1-4) shall this new block assume? 2
+This is the board currently: 
+
+2| | | 
+-|-|-|-      
+ | | | 
+-|-|-|-      
+ | | | 
+-|-|-|-      
+ | | | 
+
+Which block would you like to fill: a3
+What value (1-4) shall this new block assume? 1
+This is the board currently: 
+
+2| |1| 
+-|-|-|-      
+ | | | 
+-|-|-|-      
+ | | | 
+-|-|-|-      
+ | | | 
+
+Which block would you like to fill: b3
+What value (1-4) shall this new block assume? 2
+This is the board currently: 
+
+2| |1| 
+-|-|-|-      
+ | |2| 
+-|-|-|-      
+ | | | 
+-|-|-|-      
+ | | | 
+
+Which block would you like to fill: b3
+That is not the valid name of an unfilled square.
+
+Currently, these square have no values: 
+['a2', 'a4', 'b1', 'b2', 'b4', 'c1', 'c2', 'c3', 'c4', 'd1', 'd2', 'd3', 'd4']
+        
+Please try again.
+Which block would you like to fill: a4
+What value (1-4) shall this new block assume? 1
+
+That is an invalid input. Your requested inputted value
+is already either present in the corresponding row/column/square
+of the chosen block. Please try again
+What value (1-4) shall this new block assume? b2
+That is an invalid input. Valid inputs are "1", "2", "3", and "4"
+Please try again
+What value (1-4) shall this new block assume? 1
+
+That is an invalid input. Your requested inputted value
+is already either present in the corresponding row/column/square
+of the chosen block. Please try again
+What value (1-4) shall this new block assume? c3
+That is an invalid input. Valid inputs are "1", "2", "3", and "4"
+Please try again
+What value (1-4) shall this new block assume? 1
+
+That is an invalid input. Your requested inputted value
+is already either present in the corresponding row/column/square
+of the chosen block. Please try again
+What value (1-4) shall this new block assume? 3
+This is the board currently: 
+
+2| |1|3
+-|-|-|-      
+ | |2| 
+-|-|-|-      
+ | | | 
+-|-|-|-      
+ | | | 
+
+Which block would you like to fill: b2
+What value (1-4) shall this new block assume? 1
+This is the board currently: 
+
+2| |1|3
+-|-|-|-      
+ |1|2| 
+-|-|-|-      
+ | | | 
+-|-|-|-      
+ | | | 
+
+The sudoku puzzle can now be attempted to be solved.
+Would you like to input additional values for blocks? (Y)es/(N)o: y
+Which block would you like to fill: c3
+What value (1-4) shall this new block assume? 3
+This is the board currently: 
+
+2| |1|3
+-|-|-|-      
+ |1|2| 
+-|-|-|-      
+ | |3| 
+-|-|-|-      
+ | | | 
+
+The sudoku puzzle can now be attempted to be solved.
+Would you like to input additional values for blocks? (Y)es/(N)o: n
+This is the solution: 
+
+2|4|1|3
+-|-|-|-      
+3|1|2|4
+-|-|-|-      
+4|2|3|1
+-|-|-|-      
+1|3|4|2
