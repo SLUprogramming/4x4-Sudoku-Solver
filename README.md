@@ -45,4 +45,4 @@ To run the solver locally, follow these steps:
   cd 2x2-Sudoku-Solver
 
   3. Run the program:
-  python main.py
+  python sudoku_solver.py
