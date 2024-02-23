@@ -1,5 +1,5 @@
-# This program solves 2x2 sudoku puzzles
-# A 2x2 sudoku puzzle has the following form:
+# This program solves 4x4 sudoku puzzles
+# A 4x4 sudoku puzzle has the following form:
 #       
 # a1 a2 | a3 a4
 # b1 b2 | b3 b4
@@ -19,9 +19,13 @@
 # allowed to be present in a single row,
 # column, or square.
 
+from random import shuffle
+# random library pseudorandomly generates random values.
+# shuffle(x) function: "Shuffle list x in place, and return None."
+
 def instructions():
-    print('''This program solves 2x2 sudoku puzzles
-A 2x2 sudoku puzzle has the following form:
+    print('''This program solves 4x4 sudoku puzzles
+A 4x4 sudoku puzzle has the following form:
     
 a1 a2 | a3 a4
 b1 b2 | b3 b4
@@ -103,13 +107,14 @@ def check_valid_input(requested_block, requested_value):
                 return False
     return True
 
-def win_game():
+def quick_win_game():
     '''
-    Attempts to solve the Sudoku puzzle. It iterates over each unfilled block and tries 
+    Quickly attempts to solve the Sudoku puzzle. It iterates over each unfilled block and tries 
     all valid inputs (1-4) for each block. If a valid input is found, it updates the 
     'all_blocks' dictionary with that input. If all blocks are filled after these attempts, 
     it prints the solution. Otherwise, it prompts the user to input more values. If the 
-    user declines, it resets 'all_blocks' to the state saved in 'temp_board'.
+    user declines, it resets 'all_blocks' to the state saved in 'temp_board'. Simplest algorithm
+    solve a puzzle, but it only works sometimes.
     '''
     global all_blocks
     global temp_board
@@ -120,12 +125,47 @@ def win_game():
             if check_valid_input(unfilled_block, valid_input) is True:   
                 all_blocks[unfilled_block] = valid_input
     if len(unfilled(unfilled_blocks)) == 0:
+        print('This puzzle was quickly solved.')
         print('This is the solution: ', end='\n')
         print_board()
     else:
-        print("This puzzle could not be solved, more values are needed.")
         all_blocks = temp_board
         # reverts Sudoku puzzle back to its state before win_game was executed
+        brute_win_game()
+
+def brute_win_game():
+    '''
+    Uses a very similar algorithm to quick_win_game to solve the sudoku puzzle but it tried 50
+    attempts. Each attempt the computer takes a different approach since the order of the
+    list containing unfilled blocks the computer iterates over is shuffled as is the list
+    of valid inputs.
+    '''
+    global all_blocks
+    global temp_board
+    runs = 0
+    valid_inputs = ['1','2','3','4']
+    local_unfilled_blocks = (unfilled(unfilled_blocks))
+    while runs < 50:
+        shuffled_valid_inputs = list(valid_inputs)
+        shuffle(shuffled_valid_inputs)
+        shuffled_local_unfilled_blocks = list(local_unfilled_blocks)
+        shuffle(shuffled_local_unfilled_blocks)
+        for unfilled_block in shuffled_local_unfilled_blocks:
+            for valid_input in shuffled_valid_inputs:
+                if check_valid_input(unfilled_block, valid_input):
+                    all_blocks[unfilled_block] = valid_input
+        if len(unfilled(unfilled_blocks)) == 0:
+            print('This is the solution: ', end='\n')
+            print_board()
+            solved = True
+            break
+        else:
+            all_blocks = temp_board
+            runs += 1
+    if not solved:
+        print("This puzzle could not be solved, more values are needed.")
+        all_blocks = temp_board
+        # reverts Sudoku puzzle back to its state before win_game() was executed
         input_number()
 
 def input_number():
@@ -165,7 +205,7 @@ Currently, these square have no values:
                             # creates a variable storing the state of the board before win_game was attempted
                             # this is done in case win_game fails then the board can be reverted back to
                             # its original state
-                            win_game()
+                            brute_win_game()
                     selected_valid_input = True
                 elif new_value not in valid_inputs:
                     print('That is an invalid input. Valid inputs are "1", "2", "3", and "4"')
