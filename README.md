@@ -1,7 +1,7 @@
-# 2x2-Sudoku-Solver
+# 4x4-Sudoku-Solver
   User-friendly script that solves 2x2 sudoku puzzles using brute-force approach.
 
-# A 2x2 sudoku puzzle has the following form:
+# A 4x4 sudoku puzzle has the following form:
     #       
     # a1 a2 | a3 a4
     # b1 b2 | b3 b4
